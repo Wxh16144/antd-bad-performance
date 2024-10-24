@@ -1,0 +1,32 @@
+{
+  "name": "antd-bad-performance",
+  "private": true,
+  "scripts": {
+    "prepare": "npm run setup:link && npm run build",
+    "setup:link": "tsx scripts/setupLink.ts",
+    "start:v4": "pnpm --filter \"./examples/with-antd4\" run start",
+    "start:v5": "pnpm --filter \"./examples/with-antd5\" run start",
+    "start": "concurrently -n=V4,V5 -c=green,magenta \"npm run start:v4\" \"npm run start:v5\"",
+    "build": "pnpm --filter \"./packages/*\" run build",
+    "build:all": "pnpm --filter \"./examples/*\" run build",
+    "preview:v4": "pnpm --filter \"./examples/with-antd4\" run preview",
+    "preview:v5": "pnpm --filter \"./examples/with-antd5\" run preview",
+    "preview": "concurrently -n=V4,V5 -c=green,magenta \"npm run preview:v4\" \"npm run preview:v5\""
+  },
+  "dependencies": {
+    "easy-antd-modal": "^1.7.1",
+    "lodash-es": "latest",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "vite": "latest"
+  },
+  "devDependencies": {
+    "@types/lodash-es": "latest",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.3",
+    "concurrently": "^8.2.2",
+    "fs-extra": "^11.2.0",
+    "tsx": "^4.19.1"
+  }
+}
